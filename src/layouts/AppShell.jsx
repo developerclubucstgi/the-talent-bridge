@@ -25,9 +25,9 @@ export function AppShell() {
               to={item.to}
               className={({ isActive }) =>
                 [
-                  'rounded-xl px-4 py-3 text-sm font-medium transition',
+                  'rounded-xl px-4 py-3 text-sm font-medium transition hi',
                   isActive
-                    ? 'bg-blue-50 text-blue-700'
+                    ? 'bg-blue-50 text-primary'
                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900',
                 ].join(' ')
               }
