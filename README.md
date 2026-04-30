@@ -17,6 +17,14 @@ npm run dev
 
 Open `http://localhost:3000`
 
+## TypeScript
+
+TypeScript tooling is configured for gradual migration from JavaScript files.
+
+```bash
+npm run typecheck
+```
+
 ## Folder structure
 
 ```text
