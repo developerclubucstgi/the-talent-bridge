@@ -27,7 +27,7 @@ export function DashboardPage() {
         description="This page already demonstrates a real API flow, loading state, error handling, and reusable UI blocks."
         action={
           <button
-            className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(37,99,235,0.24)] transition hover:bg-blue-700"
+            className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition hover:brightness-110"
             type="button"
             onClick={() => execute().catch(() => null)}
           >
