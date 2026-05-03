@@ -51,28 +51,28 @@
 
 html.dark {
   color-scheme: dark;
-  --background: #131313;
-  --foreground: #e6e7eb;
-  --primary: #43d8f1;
-  --primary-foreground: #071318;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #ffffff;
-  --surface: rgba(255, 255, 255, 0.05);
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(230, 231, 235, 0.62);
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(8, 11, 14, 0.88);
-  --accent: rgba(67, 216, 241, 0.12);
-  --accent-foreground: #f7fbff;
-  --nav: rgba(17, 18, 20, 0.8);
-  --nav-foreground: #f7fbff;
+  --background: #09111f;
+  --foreground: #edf4ff;
+  --primary: #4da3ff;
+  --primary-foreground: #061120;
+  --card: rgba(12, 22, 38, 0.86);
+  --card-foreground: #edf4ff;
+  --surface: rgba(19, 33, 56, 0.88);
+  --muted: rgba(77, 101, 145, 0.2);
+  --muted-foreground: rgba(209, 223, 244, 0.72);
+  --border: rgba(120, 154, 215, 0.18);
+  --input: rgba(14, 24, 42, 0.94);
+  --accent: rgba(77, 163, 255, 0.14);
+  --accent-foreground: #f8fbff;
+  --nav: rgba(7, 14, 27, 0.82);
+  --nav-foreground: #edf4ff;
   --destructive: rgba(239, 68, 68, 0.16);
   --destructive-foreground: #fee2e2;
-  --ring: rgba(67, 216, 241, 0.24);
-  --page-glow: radial-gradient(circle at top, rgba(67, 216, 241, 0.08), transparent 24%);
-  --page-background: linear-gradient(180deg, #131313 0%, #161718 100%);
-  --shadow-elevated: 0 18px 40px rgba(0, 0, 0, 0.24);
-  --shadow-soft: 0 12px 24px rgba(67, 216, 241, 0.24);
+  --ring: rgba(77, 163, 255, 0.24);
+  --page-glow: radial-gradient(circle at top, rgba(77, 163, 255, 0.1), transparent 28%);
+  --page-background: linear-gradient(180deg, #09111f 0%, #0c1727 46%, #101b2d 100%);
+  --shadow-elevated: 0 18px 40px rgba(0, 0, 0, 0.34);
+  --shadow-soft: 0 14px 28px rgba(77, 163, 255, 0.18);
 }
 
 html,
