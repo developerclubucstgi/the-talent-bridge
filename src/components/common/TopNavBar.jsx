@@ -4,18 +4,17 @@ import { APP_NAME } from '../../constants/app';
 import { useTheme } from '../../hooks/useTheme';
 
 const navItems = [
-  { label: 'Profiles', to: '/dashboard' },
-  { label: 'Directory' },
-  { label: 'Projects' },
-  { label: 'Templates', },
+  { label: 'Home', to: '/' },
+  { label: 'Profile', to: '/profiles' },
+  { label: 'How to', to: '/how-to' },
+  { label: 'Templates', to: '/templates' },
 ];
-
 
 function GlobeIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
       <path
-        d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm5.95 8.25h-2.8a14.7 14.7 0 0 0-1.3-5.03 7.54 7.54 0 0 1 4.1 5.03ZM12 4.54c.9 1.03 1.62 3.03 1.82 5.21h-3.64c.2-2.18.92-4.18 1.82-5.2ZM4.05 11.25a7.54 7.54 0 0 1 4.1-5.03 14.7 14.7 0 0 0-1.3 5.03h-2.8Zm0 1.5h2.8c.14 1.8.58 3.5 1.3 5.03a7.54 7.54 0 0 1-4.1-5.03Zm5.77 0h4.36c-.2 2.18-.92 4.18-1.82 5.2-.9-1.02-1.62-3.02-1.82-5.2Zm0-1.5c.2-2.18.92-4.18 1.82-5.2.9 1.02 1.62 3.02 1.82 5.2H9.82Zm4.03 6.53a14.7 14.7 0 0 0 1.3-5.03h2.8a7.54 7.54 0 0 1-4.1 5.03Z"
+        d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm5.95 8.25h-2.8a14.7 14.7 0 0 0-1.3-5.03 7.54 7.54 0 0 1 4.1 5.03ZM12 4.54c.9 1.03 1.62 3.03 1.82 5.21h-3.64c.2-2.18.92-4.18 1.82-5.2ZM4.05 11.25a7.54 7.54 0 0 1 4.1-5.03 14.7 14.7 0 0 0-1.3 5.03h-2.8Zm0 1.5h2.8c.14 1.8.58 3.5 1.3 5.03a7.54 7.54 0 0 1-4.1-5.03Zm5.77 0h4.36c-.2 2.18-.92-4.18-1.82 5.2-.9-1.02-1.62-3.02-1.82-5.2Zm0-1.5c.2-2.18.92-4.18 1.82-5.2.9 1.02 1.62 3.02 1.82 5.2H9.82Zm4.03 6.53a14.7 14.7 0 0 0 1.3-5.03h2.8a7.54 7.54 0 0 1-4.1 5.03Z"
         fill="currentColor"
       />
     </svg>
@@ -130,8 +129,8 @@ export function TopNavBar() {
       <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8 md:h-[4.5rem] md:flex-row md:items-center md:gap-4 md:py-0">
         <div className="flex min-w-0 items-center justify-between gap-3 md:flex-none md:justify-start">
           <NavLink
-            to="/dashboard"
-            className="bg-gradient-to-r from-primary via-primary to-nav-foreground bg-clip-text font-black tracking-[0.12em] text-transparent sm:text-lg lg:text-2xl"
+            to="/"
+            className="bg-gradient-to-r from-primary via-primary to-nav-foreground bg-clip-text text-base font-black tracking-[0.12em] text-transparent sm:text-lg lg:text-[1.75rem]"
           >
             {brand}
           </NavLink>
@@ -149,23 +148,15 @@ export function TopNavBar() {
           </button>
         </div>
 
-        <nav className="hidden flex-1 items-center justify-center gap-7 md:flex md:px-8">
+        <nav className="hidden flex-1 items-center justify-center gap-6 md:flex md:px-8 lg:gap-7">
           {navItems.map((item) => {
-            const isActive = item.to ? location.pathname === item.to : false;
+            const isActive = location.pathname === item.to;
             const className = [
-              "border-b pb-1  md:text-sm lg:text-base cursor-pointer uppercase tracking-[0.1em] transition-colors",
+              'cursor-pointer border-b pb-1 text-[0.82rem] font-semibold uppercase tracking-[0.08em] transition-colors lg:text-[0.92rem]',
               isActive
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-nav-foreground',
             ].join(' ');
-
-            if (!item.to) {
-              return (
-                <button key={item.label} type="button" className={className}>
-                  {item.label}
-                </button>
-              );
-            }
 
             return (
               <NavLink key={item.to} to={item.to} className={className}>
@@ -210,21 +201,13 @@ export function TopNavBar() {
             >
             <nav className="grid gap-1.5">
               {navItems.map((item) => {
-                const isActive = item.to ? location.pathname === item.to : false;
+                const isActive = location.pathname === item.to;
                 const className = [
                   'flex items-center justify-between rounded-xl border px-3 py-3 font-[\'Space_Grotesk\'] text-[11px] uppercase tracking-[0.28em] transition-colors cursor-pointer bg-background',
                   isActive
                     ? 'border-primary bg-primary/15 text-primary'
                     : 'border-border text-muted-foreground hover:border-primary/60 hover:bg-accent hover:text-nav-foreground',
                 ].join(' ');
-
-                if (!item.to) {
-                  return (
-                    <button key={item.label} type="button" className={className} onClick={() => setMenuOpen(false)}>
-                      {item.label}
-                    </button>
-                  );
-                }
 
                 return (
                   <NavLink

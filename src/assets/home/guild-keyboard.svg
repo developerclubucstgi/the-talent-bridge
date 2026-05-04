@@ -1,0 +1,37 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="36" fill="#07121B"/>
+  <rect width="1200" height="900" rx="36" fill="url(#bg)"/>
+  <ellipse cx="252" cy="236" rx="146" ry="118" fill="#1FE0FF" fill-opacity="0.68"/>
+  <ellipse cx="252" cy="236" rx="236" ry="204" fill="#1FE0FF" fill-opacity="0.14"/>
+  <g opacity="0.96">
+    <path d="M202 532L864 398L1030 673L366 809L202 532Z" fill="#101C29"/>
+    <path d="M250 544L892 420L972 622L332 742L250 544Z" fill="#182B3D"/>
+    <g fill="#27445F">
+      <rect x="306" y="536" width="42" height="20" rx="4" transform="rotate(-10 306 536)"/>
+      <rect x="357" y="526" width="42" height="20" rx="4" transform="rotate(-10 357 526)"/>
+      <rect x="408" y="516" width="42" height="20" rx="4" transform="rotate(-10 408 516)"/>
+      <rect x="459" y="506" width="42" height="20" rx="4" transform="rotate(-10 459 506)"/>
+      <rect x="510" y="496" width="42" height="20" rx="4" transform="rotate(-10 510 496)"/>
+      <rect x="561" y="486" width="42" height="20" rx="4" transform="rotate(-10 561 486)"/>
+      <rect x="612" y="476" width="42" height="20" rx="4" transform="rotate(-10 612 476)"/>
+      <rect x="663" y="466" width="42" height="20" rx="4" transform="rotate(-10 663 466)"/>
+      <rect x="714" y="456" width="42" height="20" rx="4" transform="rotate(-10 714 456)"/>
+      <rect x="326" y="576" width="42" height="20" rx="4" transform="rotate(-10 326 576)"/>
+      <rect x="377" y="566" width="42" height="20" rx="4" transform="rotate(-10 377 566)"/>
+      <rect x="428" y="556" width="42" height="20" rx="4" transform="rotate(-10 428 556)"/>
+      <rect x="479" y="546" width="42" height="20" rx="4" transform="rotate(-10 479 546)"/>
+      <rect x="530" y="536" width="42" height="20" rx="4" transform="rotate(-10 530 536)"/>
+      <rect x="581" y="526" width="42" height="20" rx="4" transform="rotate(-10 581 526)"/>
+      <rect x="632" y="516" width="42" height="20" rx="4" transform="rotate(-10 632 516)"/>
+      <rect x="683" y="506" width="42" height="20" rx="4" transform="rotate(-10 683 506)"/>
+      <rect x="734" y="496" width="42" height="20" rx="4" transform="rotate(-10 734 496)"/>
+    </g>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="600" y1="0" x2="600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#03080D"/>
+      <stop offset="0.45" stop-color="#0A1520"/>
+      <stop offset="1" stop-color="#0D2944"/>
+    </linearGradient>
+  </defs>
+</svg>
