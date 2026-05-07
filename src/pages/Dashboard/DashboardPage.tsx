@@ -7,10 +7,17 @@ import { PostList } from '../../features/dashboard/components/PostList';
 import { useAsync } from '../../hooks/useAsync';
 import { dashboardService } from '../../services/dashboardService';
 
-export function DashboardPage() {
-  const abortRef = useRef(null);
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
-  const loadPosts = useCallback(async () => {
+export function DashboardPage() {
+  const abortRef = useRef<AbortController | null>(null);
+
+  const loadPosts = useCallback(async (): Promise<Post[]> => {
     abortRef.current?.abort();
     abortRef.current = new AbortController();
 

@@ -1,4 +1,4 @@
-import { useRoutes } from 'react-router-dom';
+import { useRoutes, RouteObject } from 'react-router-dom';
 import { AppShell } from '../layouts/AppShell';
 import { DashboardPage } from '../pages/Dashboard/DashboardPage';
 import { GenericPage } from '../pages/Generic/GenericPage';
@@ -6,7 +6,14 @@ import { HomePage } from '../pages/Home/HomePage';
 import { LoginPage } from '../pages/Login/LoginPage';
 import { NotFoundPage } from '../pages/NotFound/NotFoundPage';
 
-const placeholderPages = [
+interface PlaceholderPageProps {
+  path: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+const placeholderPages: PlaceholderPageProps[] = [
   {
     path: 'profiles',
     eyebrow: 'Profiles',
@@ -45,7 +52,7 @@ const placeholderPages = [
 ];
 
 export function AppRoutes() {
-  return useRoutes([
+  const routes: RouteObject[] = [
     {
       path: '/',
       element: <AppShell />,
@@ -61,5 +68,7 @@ export function AppRoutes() {
     },
     { path: '/login', element: <LoginPage /> },
     { path: '*', element: <NotFoundPage /> },
-  ]);
+  ];
+
+  return useRoutes(routes);
 }

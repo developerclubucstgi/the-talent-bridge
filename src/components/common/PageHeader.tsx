@@ -1,4 +1,13 @@
-export function PageHeader({ eyebrow, title, description, action }) {
+import { ReactNode } from 'react';
+
+interface PageHeaderProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  action?: ReactNode;
+}
+
+export function PageHeader({ eyebrow, title, description, action }: PageHeaderProps) {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
       <div>

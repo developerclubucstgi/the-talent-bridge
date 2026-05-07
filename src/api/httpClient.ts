@@ -1,7 +1,15 @@
 import { env } from '../config/env';
 import { createQueryString } from '../utils/queryString';
 
-async function request(endpoint, options = {}) {
+interface RequestOptions {
+  method?: string;
+  params?: Record<string, unknown>;
+  data?: unknown;
+  headers?: Record<string, string>;
+  signal?: AbortSignal;
+}
+
+async function request(endpoint: string, options: RequestOptions = {}): Promise<unknown> {
   const {
     method = 'GET',
     params,
@@ -36,12 +44,12 @@ async function request(endpoint, options = {}) {
 }
 
 export const httpClient = {
-  get: (endpoint, options) => request(endpoint, { ...options, method: 'GET' }),
-  post: (endpoint, data, options) =>
+  get: (endpoint: string, options?: RequestOptions) => request(endpoint, { ...options, method: 'GET' }),
+  post: (endpoint: string, data?: unknown, options?: RequestOptions) =>
     request(endpoint, { ...options, method: 'POST', data }),
-  put: (endpoint, data, options) =>
+  put: (endpoint: string, data?: unknown, options?: RequestOptions) =>
     request(endpoint, { ...options, method: 'PUT', data }),
-  patch: (endpoint, data, options) =>
+  patch: (endpoint: string, data?: unknown, options?: RequestOptions) =>
     request(endpoint, { ...options, method: 'PATCH', data }),
-  delete: (endpoint, options) => request(endpoint, { ...options, method: 'DELETE' }),
+  delete: (endpoint: string, options?: RequestOptions) => request(endpoint, { ...options, method: 'DELETE' }),
 };

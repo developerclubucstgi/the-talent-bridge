@@ -1,9 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { APP_NAME } from '../../constants/app';
 import { useTheme } from '../../hooks/useTheme';
 
-const navItems = [
+interface NavItem {
+  label: string;
+  to: string;
+}
+
+const navItems: NavItem[] = [
   { label: 'Home', to: '/' },
   { label: 'Profile', to: '/profiles' },
   { label: 'How to', to: '/how-to' },
@@ -81,8 +86,8 @@ export function TopNavBar() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const menuRef = useRef(null);
-  const menuToggleRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const brand = APP_NAME.replace(/\s+/g, '_').toUpperCase();
   const ThemeIcon = theme === 'dark' ? SunIcon : MoonIcon;
   const nextThemeLabel = theme === 'dark' ? 'light' : 'dark';
@@ -99,8 +104,8 @@ export function TopNavBar() {
       return undefined;
     }
 
-    const handlePointerDown = (event) => {
-      const target = event.target;
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement;
 
       if (menuRef.current?.contains(target) || menuToggleRef.current?.contains(target)) {
         return;
@@ -109,7 +114,7 @@ export function TopNavBar() {
       setMenuOpen(false);
     };
 
-    const handleEscape = (event) => {
+    const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMenuOpen(false);
       }
@@ -126,8 +131,8 @@ export function TopNavBar() {
 
   return (
     <header className={`sticky top-0 z-50 border-b border-border bg-nav text-nav-foreground backdrop-blur-xl transition-shadow duration-150 ${isScrolled ? 'shadow-[var(--shadow-elevated)]' : ''}`}>
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8 md:h-[4.5rem] md:flex-row md:items-center md:gap-4 md:py-0">
-        <div className="flex min-w-0 items-center justify-between gap-3 md:flex-none md:justify-start">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8 lg:h-[4.5rem] lg:flex-row lg:items-center lg:gap-4 lg:py-0">
+        <div className="flex min-w-0 items-center justify-between gap-3 lg:flex-none lg:justify-start">
           <NavLink
             to="/"
             className="bg-gradient-to-r from-primary via-primary to-nav-foreground bg-clip-text text-base font-black tracking-[0.12em] text-transparent sm:text-lg lg:text-[1.75rem]"
@@ -142,13 +147,13 @@ export function TopNavBar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-menu"
             onClick={() => setMenuOpen((current) => !current)}
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition hover:bg-accent hover:text-primary md:hidden"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition hover:bg-accent hover:text-primary lg:hidden"
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
 
-        <nav className="hidden flex-1 items-center justify-center gap-6 md:flex md:px-8 lg:gap-7">
+        <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex lg:px-8 lg:gap-7">
           {navItems.map((item) => {
             const isActive = location.pathname === item.to;
             const className = [
@@ -166,10 +171,11 @@ export function TopNavBar() {
           })}
         </nav>
 
-        <div className="hidden items-center justify-end md:flex md:gap-1.5 sm:gap-3.5 md:flex-none">
+        <div className="hidden items-center justify-end lg:flex lg:gap-1.5 sm:gap-3.5 lg:flex-none">
           <button
             type="button"
             className="hidden h-10 flex-col cursor-pointer items-center justify-center rounded-lg px-2 text-muted-foreground transition hover:bg-accent hover:text-primary sm:flex"
+            aria-label="Language"
           >
             <GlobeIcon />
           </button>
@@ -197,61 +203,62 @@ export function TopNavBar() {
             <div
               ref={menuRef}
               id="mobile-nav-menu"
-              className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-border bg-background p-3 shadow-[var(--shadow-elevated)]"
+              className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border border-border bg-background p-3 shadow-[var(--shadow-elevated)] lg:hidden"
             >
-            <nav className="grid gap-1.5">
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.to;
-                const className = [
-                  'flex items-center justify-between rounded-xl border px-3 py-3 font-[\'Space_Grotesk\'] text-[11px] uppercase tracking-[0.28em] transition-colors cursor-pointer bg-background',
-                  isActive
-                    ? 'border-primary bg-primary/15 text-primary'
-                    : 'border-border text-muted-foreground hover:border-primary/60 hover:bg-accent hover:text-nav-foreground',
-                ].join(' ');
+              <nav className="grid gap-1.5">
+                {navItems.map((item) => {
+                  const isActive = location.pathname === item.to;
+                  const className = [
+                    'flex items-center justify-between rounded-xl border px-3 py-3 font-[\'Space_Grotesk\'] text-[11px] uppercase tracking-[0.28em] transition-colors cursor-pointer bg-background',
+                    isActive
+                      ? 'border-primary bg-primary/15 text-primary'
+                      : 'border-border text-muted-foreground hover:border-primary/60 hover:bg-accent hover:text-nav-foreground',
+                  ].join(' ');
 
-                return (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={className}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </NavLink>
-                );
-              })}
-            </nav>
+                  return (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      className={className}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  );
+                })}
+              </nav>
 
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-muted-foreground cursor-pointer transition hover:border-primary/60 hover:bg-accent hover:text-nav-foreground"
-              >
-                <GlobeIcon />
-                <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">EN/MM</span>
-              </button>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-muted-foreground cursor-pointer transition hover:border-primary/60 hover:bg-accent hover:text-nav-foreground"
+                  aria-label="Language"
+                >
+                  <GlobeIcon />
+                  <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">EN/MM</span>
+                </button>
 
-              <button
-                type="button"
-                aria-label={`Switch to ${nextThemeLabel} mode`}
-                onClick={toggleTheme}
-                className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-muted-foreground cursor-pointer transition hover:border-primary/60 hover:bg-accent hover:text-nav-foreground"
-              >
-                <ThemeIcon />
-                <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">
-                  {nextThemeLabel}
-                </span>
-              </button>
+                <button
+                  type="button"
+                  aria-label={`Switch to ${nextThemeLabel} mode`}
+                  onClick={toggleTheme}
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-muted-foreground cursor-pointer transition hover:border-primary/60 hover:bg-accent hover:text-nav-foreground"
+                >
+                  <ThemeIcon />
+                  <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">
+                    {nextThemeLabel}
+                  </span>
+                </button>
 
-              <button
-                type="button"
-                aria-label="Profile"
-                className="col-span-2 flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-primary cursor-pointer transition hover:border-primary/60 hover:bg-accent"
-              >
-                <ProfileIcon />
-                <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">Profile</span>
-              </button>
-            </div>
+                <button
+                  type="button"
+                  aria-label="Profile"
+                  className="col-span-2 flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 py-3 text-sm text-primary cursor-pointer transition hover:border-primary/60 hover:bg-accent"
+                >
+                  <ProfileIcon />
+                  <span className="font-['Space_Grotesk'] text-[10px] uppercase tracking-[0.28em]">Profile</span>
+                </button>
+              </div>
             </div>
           </>
         ) : null}

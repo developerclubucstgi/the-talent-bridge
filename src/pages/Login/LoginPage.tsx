@@ -1,7 +1,17 @@
+import { FormEvent } from 'react';
+
 export function LoginPage() {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Replace with your real authentication flow
+  };
+
   return (
     <div className="grid min-h-screen place-items-center bg-background px-4 text-foreground">
-      <form className="grid w-full max-w-md gap-5 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-elevated)] backdrop-blur-sm">
+      <form
+        className="grid w-full max-w-md gap-5 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-elevated)] backdrop-blur-sm"
+        onSubmit={handleSubmit}
+      >
         <p className="font-['Space_Grotesk'] text-xs font-bold uppercase tracking-[0.28em] text-primary">Auth</p>
         <h2 className="text-3xl font-semibold tracking-tight text-foreground">Welcome back</h2>
         <p className="text-sm leading-6 text-muted-foreground">

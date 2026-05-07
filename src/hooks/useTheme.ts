@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
+type Theme = 'light' | 'dark';
+
 const STORAGE_KEY = 'talent-bridge-theme';
 
-function getInitialTheme() {
+function getInitialTheme(): Theme {
   if (typeof window === 'undefined') {
     return 'dark';
   }
@@ -16,8 +18,13 @@ function getInitialTheme() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-export function useTheme() {
-  const [theme, setTheme] = useState(getInitialTheme);
+interface UseThemeReturn {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export function useTheme(): UseThemeReturn {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -30,7 +37,7 @@ export function useTheme() {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-    const handleChange = (event) => {
+    const handleChange = (event: MediaQueryListEvent) => {
       const savedTheme = window.localStorage.getItem(STORAGE_KEY);
 
       if (!savedTheme) {

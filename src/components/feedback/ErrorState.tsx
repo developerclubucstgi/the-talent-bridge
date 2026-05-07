@@ -1,4 +1,9 @@
-export function ErrorState({ message = 'Something went wrong.', onRetry }) {
+interface ErrorStateProps {
+  message?: string;
+  onRetry?: () => void;
+}
+
+export function ErrorState({ message = 'Something went wrong.', onRetry }: ErrorStateProps) {
   return (
     <div className="grid gap-3 rounded-2xl border border-destructive bg-destructive p-4 text-sm text-destructive-foreground">
       <p>{message}</p>

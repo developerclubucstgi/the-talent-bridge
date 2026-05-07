@@ -1,4 +1,4 @@
-export function createQueryString(params = {}) {
+export function createQueryString(params: Record<string, unknown> = {}): string {
   const searchParams = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {

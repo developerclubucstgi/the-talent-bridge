@@ -1,4 +1,14 @@
-export function PostList({ posts }) {
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
+interface PostListProps {
+  posts?: Post[] | null;
+}
+
+export function PostList({ posts }: PostListProps) {
   if (!posts?.length) {
     return <p className="text-sm text-muted-foreground">No data found.</p>;
   }
